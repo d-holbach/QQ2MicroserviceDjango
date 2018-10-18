@@ -2,7 +2,7 @@ import json
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from .models import Student
-from.producer import log
+from .producer import log
 
 # Create your views here.
 def index(request):
@@ -18,7 +18,7 @@ def allStudents(request):
         json_data = json.loads(request.body)
         newStudent = Student(firstname=json_data['firstname'], lastname=json_data['lastname'], matriculation_number=json_data['matriculation_number'], course=json_data['course'], email=json_data['email'])
         newStudent.save()
-        log(request.method, 'New student with matriculation number ' + str(json_data['matriculation_number']))
+        log(request.method, 'new student with matriculation number ' + str(json_data['matriculation_number']))
         return JsonResponse(json_data)
 
 def oneStudent(request, mnr):
